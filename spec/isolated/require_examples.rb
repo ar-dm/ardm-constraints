@@ -1,4 +1,4 @@
-shared_examples_for "require 'dm-constraints'" do
+RSpec.shared_examples_for "require 'dm-constraints'" do
 
   it "extends Model descendants with the constraint API" do
     DataMapper::Model.descendants.should_not be_empty

@@ -1,16 +1,16 @@
-require 'spec'
-require 'isolated/require_spec'
+require 'rspec'
+require 'isolated/require_examples'
 require 'dm-core/spec/setup'
 require 'dm-core/spec/lib/adapter_helpers'
 
 # To really test this behavior, this spec needs to be run in isolation and not
 # as part of the typical rake spec run, which requires dm-transactions upfront
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   config.extend(DataMapper::Spec::Adapters::Helpers)
 end
 
-describe "require 'dm-constraints' before calling DataMapper.setup" do
+RSpec.describe "require 'dm-constraints' before calling DataMapper.setup" do
 
   before(:all) do
 
@@ -31,6 +31,6 @@ describe "require 'dm-constraints' before calling DataMapper.setup" do
 
   end
 
-  it_should_behave_like "require 'dm-constraints'"
+  include_examples "require 'dm-constraints'"
 
 end

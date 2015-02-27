@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
+RSpec.describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
   supported_by :all do
     before :all do
       @in_memory = defined?(DataMapper::Adapters::InMemoryAdapter) && @adapter.kind_of?(DataMapper::Adapters::InMemoryAdapter)
@@ -117,7 +117,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
         end
 
         it 'should destroy the parent if there are no children in the association' do
-          @author.destroy.should be(true)
+          @author.destroy.should be_truthy
           @author.model.get(*@author.key).should be_nil
         end
 
@@ -176,7 +176,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
           end
 
           it 'should destroy the parent if there are no children in the association' do
-            @author.destroy.should be(true)
+            @author.destroy.should be_truthy
             @author.model.get(*@author.key).should be_nil
           end
 
@@ -192,7 +192,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
 
         describe 'many-to-many associations' do
           before do
-            pending 'The adapter does not support m:m associations yet' if @skip
+            skip 'The adapter does not support m:m associations yet' if @skip
           end
 
           before do
@@ -291,7 +291,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
 
         describe 'many-to-many associations' do
           before do
-            pending 'The adapter does not support m:m associations yet' if @skip
+            skip 'The adapter does not support m:m associations yet' if @skip
           end
 
           before do
@@ -301,18 +301,18 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
           end
 
           it 'should let the parent to be destroyed' do
-            @author.destroy.should be(true)
+            @author.destroy.should be_truthy
             @author.model.get(*@author.key).should be_nil
           end
 
           it 'should destroy the children' do
-            @author.destroy.should be(true)
+            @author.destroy.should be_truthy
             @article.model.get(*@article.key).should be_nil
             @other_article.model.get(*@other_article.key).should be_nil
           end
 
           it 'the child should be destroyable' do
-            @article.destroy.should be(true)
+            @article.destroy.should be_truthy
             @article.model.get(*@article.key).should be_nil
           end
         end
@@ -390,7 +390,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
 
         describe 'many-to-many associations' do
           before do
-            pending 'The adapter does not support m:m associations yet' if @skip
+            skip 'The adapter does not support m:m associations yet' if @skip
           end
 
           before do
@@ -400,7 +400,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
           end
 
           it 'should destroy the parent and the children, too' do
-            @author.destroy.should be(true)
+            @author.destroy.should be_truthy
             @author.model.get(*@author.key).should be_nil
 
             @article.model.get(*@article.key).should be_nil
@@ -408,7 +408,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
           end
 
           it 'the child should be destroyable' do
-            @article.destroy.should be(true)
+            @article.destroy.should be_truthy
             @article.model.get(*@article.key).should be_nil
           end
         end
@@ -562,7 +562,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
 
         describe 'many-to-many associations' do
           before do
-            pending 'The adapter does not support m:m associations yet' if @skip
+            skip 'The adapter does not support m:m associations yet' if @skip
           end
 
           before do
@@ -572,7 +572,7 @@ describe 'DataMapper::Constraints', "(with #{DataMapper::Spec.adapter_name})" do
           end
 
           it 'the children should be destroyable' do
-            @article.destroy.should be(true)
+            @article.destroy.should be_truthy
             @article.model.get(*@article.key).should be_nil
           end
         end
